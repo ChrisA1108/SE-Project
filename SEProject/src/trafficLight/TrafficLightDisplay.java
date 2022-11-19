@@ -21,7 +21,7 @@ public class TrafficLightDisplay extends JFrame{
 	setVisible(true);
 	
 	}
-
+	
 	public static void main() {
 		
 		new TrafficLightDisplay();

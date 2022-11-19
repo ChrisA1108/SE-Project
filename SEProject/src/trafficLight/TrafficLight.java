@@ -2,7 +2,7 @@ package trafficLight;
 
 public class TrafficLight extends Thread{
 	
-	private static int time = 10;
+	static int time = 10;
 	
 	public void run() {
 		try {
@@ -58,6 +58,10 @@ public class TrafficLight extends Thread{
 			Thread.sleep(1000);
 		}
 		System.out.println();
+	}
+
+	public static void setTime(int time) {
+		TrafficLight.time = time;
 	}
 
 }
