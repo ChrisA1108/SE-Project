@@ -24,6 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import javax.swing.JTextPane;
+import javax.swing.JTabbedPane;
 
 public class Login {
 

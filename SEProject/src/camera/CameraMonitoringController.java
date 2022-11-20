@@ -86,8 +86,11 @@ public class CameraMonitoringController extends Thread {
 		// function call for school bus detected
 		if (state.equals("emergencyvechicle"));
 		// function call for emergency vechicle detected
-		if (state.equals("accident"));
-			// function call for accident detected
+		
+		if (state.equals("accident")) {
+			Hazard h = new Hazard(Character.toString(lane));
+        	h.report();
+		}
 			
 	}
 
