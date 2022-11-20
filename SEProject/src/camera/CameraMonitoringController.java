@@ -2,9 +2,13 @@ package camera;
 
 import java.util.Scanner;
 
-public class CameraMonitoringController {
+public class CameraMonitoringController extends Thread {
 	
-	public static void main(String[] args) {
+	public void run() {
+		main();
+	}
+	
+	public static void main() {
 		String northLane, eastLane, southLane, westLane;
 		
 		Scanner sc = new Scanner(System.in);
@@ -60,7 +64,7 @@ public class CameraMonitoringController {
 	}
 
 	private static boolean validInput(String input) {
-		if(input.toLowerCase().matches("(schoolbus)|(traffic)|(empty)|(vechicle)"
+		if(input.toLowerCase().matches("(schoolbus)|(traffic)|(empty)|(vehicle)"
 				+ "|(pedestrian)|(emergencyvechicle)|(accident)"))
 			return true;
 		else
@@ -70,22 +74,21 @@ public class CameraMonitoringController {
 	private static void parseSignal(String laneSignal, char lane) {
 		String state = laneSignal.toLowerCase();
 		
-		if(state == "empty");
-			// function call for empty lane singal
-		if(state == "vechicle");
-			// function call for vechicle detected signal
-		if(state == "traffic");
-			// function call for traffic detected signal
-		if(state == "pedestrian");
-			// function call for pedestrian detected singal
-		if(state == "schoolbus");
-			// function call for school bus detected
-		if(state == "emergencyvechicle");
-			// function call for emergency vechicle detected
-		if(state == "accident");
-			// functino call for accident detected
+		if (state.equals("empty"));
+		// function call for empty lane signal
+		if (state.equals("vehicle"));
+		// function call for vehicle detected signal
+		if (state.equals("traffic"));
+		// function call for traffic detected signal
+		if (state.equals("pedestrian"));
+		// function call for pedestrian detected signal
+		if (state.equals("schoolbus"));
+		// function call for school bus detected
+		if (state.equals("emergencyvechicle"));
+		// function call for emergency vechicle detected
+		if (state.equals("accident"));
+			// function call for accident detected
 			
-		
 	}
 
 }

@@ -62,7 +62,7 @@ public class TrafficInformation {
 		frmRightofwayTraffic.getContentPane().add(panel_1_1_1);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBackground(new Color(224, 224, 224));
 		panel_1.setBounds(0, 0, 140, 99);
 		frmRightofwayTraffic.getContentPane().add(panel_1);
 		panel_1.setLayout(null);	

@@ -102,7 +102,7 @@ public class Login {
 		JFormattedTextField usernameField = new JFormattedTextField();
 		usernameField.setBounds(642, 325, 149, 20);
 		frmRightofwayApplication.getContentPane().add(usernameField);
-		
+	
 		JCheckBox chckbxNewCheckBox = new JCheckBox("Show Password");
 		chckbxNewCheckBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

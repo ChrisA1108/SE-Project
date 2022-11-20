@@ -48,7 +48,7 @@ public class TrafficLightDisplay extends JFrame{
 	    	g.fillOval(20, 100, 50, 50);
 	    	g.setColor(Color.gray);
 	    	g.fillOval(20, 150, 50, 50);
-
+	    	
 	    }
 	    if(laneNorthColorGreen) {
 	    	g.setColor(Color.gray);

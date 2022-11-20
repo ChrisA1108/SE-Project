@@ -45,6 +45,7 @@ public class HomeScreen {
 	 */
 	private void initialize() {
 		frmRightofwayHome = new JFrame();
+		frmRightofwayHome.getContentPane().setBackground(new Color(224, 224, 224));
 		frmRightofwayHome.setResizable(false);
 		frmRightofwayHome.setAlwaysOnTop(true);
 		frmRightofwayHome.setTitle("RIGHT-OF-WAY - HOME");
@@ -92,12 +93,12 @@ public class HomeScreen {
 	
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(Color.WHITE);
-		panel_1_1.setBounds(0, 98, 951, 55);
+		panel_1_1.setBounds(0, 98, 951, 25);
 		frmRightofwayHome.getContentPane().add(panel_1_1);
 		
 		JPanel panel_1_1_1 = new JPanel();
 		panel_1_1_1.setBackground(new Color(192, 192, 192));
-		panel_1_1_1.setBounds(0, 155, 951, 5);
+		panel_1_1_1.setBounds(0, 123, 951, 5);
 		frmRightofwayHome.getContentPane().add(panel_1_1_1);
 		
 		JPanel panel_1 = new JPanel();

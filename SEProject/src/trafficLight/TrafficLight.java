@@ -2,7 +2,7 @@ package trafficLight;
 
 public class TrafficLight extends Thread{
 	
-	static int time = 10;
+	public static int greenTimer = 5, redTimer = 5, yellowTimer = 5;
 	
 	public void run() {
 		try {
@@ -18,50 +18,98 @@ public class TrafficLight extends Thread{
 		TrafficLightDisplay f = new TrafficLightDisplay();
 	
 		while(true) {
-			greenLightTimer();
+			
 			
 			if(f.laneEastColorGreen) {
+				eastGreenLightTimer();
 				f.laneEastColorGreen = false;
 				f.laneEastColorYellow = true;
 				f.repaint();
-				Thread.sleep(5000);
+				eastYellowLightTimer();
 				f.laneEastColorYellow = false;
 				f.laneEastColorRed = true;
 				f.repaint();
-				Thread.sleep(2000);
+				eastRedLightTimer();
 				f.laneNorthColorGreen = true;
 				f.repaint();
 			}
 			else if(f.laneNorthColorGreen) {
+				northGreenLightTimer();
 				f.laneNorthColorGreen = false;
 				f.laneNorthColorYellow = true;
 				f.repaint();
-				Thread.sleep(5000);
+				northRedLightTimer();
 				f.laneNorthColorYellow = false;
 				f.laneNorthColorRed = true;
 				f.repaint();
-				Thread.sleep(2000);
+				northYellowLightTimer();
 				f.laneEastColorGreen = true;
 				f.repaint();
 			}
-				
-			
 		}
 		
 		
 	}
 	
-	private static void greenLightTimer() throws InterruptedException {
-		System.out.println("Green Light Timer: ");
-		for(int i = time; i >= 0; i--) {
-			System.out.print(i + " ");
+	private static void northGreenLightTimer() throws InterruptedException {
+		//System.out.println("North Green Light Timer: ");
+		for(int i = greenTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
 			Thread.sleep(1000);
 		}
-		System.out.println();
+		//System.out.println();
 	}
-
-	public static void setTime(int time) {
-		TrafficLight.time = time;
+	
+	private static void northRedLightTimer() throws InterruptedException {
+		//System.out.println("North Red Light Timer: ");
+		for(int i = redTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
+			Thread.sleep(1000);
+		}
+		//ystem.out.println();
+	}
+	
+	private static void northYellowLightTimer() throws InterruptedException {
+		//System.out.println("North Yellow Light Timer: ");
+		for(int i = yellowTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
+			Thread.sleep(1000);
+		}
+		//System.out.println();
+	}
+	
+	private static void eastGreenLightTimer() throws InterruptedException {
+		//System.out.println("East Green Light Timer: ");
+		for(int i = greenTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
+			Thread.sleep(1000);
+		}
+		//System.out.println();
+	}
+	
+	private static void eastRedLightTimer() throws InterruptedException {
+		//System.out.println("East Red Light Timer: ");
+		for(int i = redTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
+			Thread.sleep(1000);
+		}
+		//System.out.println();
+	}
+	
+	private static void eastYellowLightTimer() throws InterruptedException {
+		//System.out.println("East Yellow Light Timer: ");
+		for(int i = yellowTimer; i >= 0; i--) {
+			//System.out.print(i + " ");
+			Thread.sleep(1000);
+		}
+		//System.out.println();
+	}
+	
+	
+	public static void setTrafficLights(String lane, int red, int green, int yellow) {
+		TrafficLight.greenTimer = green;
+		TrafficLight.redTimer = red;
+		TrafficLight.yellowTimer = yellow;
 	}
 
 }
