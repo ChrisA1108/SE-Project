@@ -175,27 +175,82 @@ public class TrafficControls {
 				txtTrafficLightLane.setColumns(10);
 				
 				JPanel panel_8 = new JPanel();
-				panel_8.setBounds(628, 196, 313, 397);
+				panel_8.setBackground(new Color(0, 128, 0));
+				panel_8.setBounds(628, 217, 313, 351);
 				panel_1.add(panel_8);
 				panel_8.setLayout(null);
 				
 				JPanel panel_9 = new JPanel();
-				panel_9.setBackground(new Color(128, 128, 128));
-				panel_9.setBounds(82, 24, 51, 332);
+				panel_9.setBackground(new Color(0, 0, 0));
+				panel_9.setBounds(92, 0, 51, 351);
 				panel_8.add(panel_9);
+				panel_9.setLayout(null);
 				
-				JPanel panel_9_1 = new JPanel();
-				panel_9_1.setBackground(Color.GRAY);
-				panel_9.add(panel_9_1);
+				JTextArea txtrNorthLane_1_1 = new JTextArea();
+				txtrNorthLane_1_1.setForeground(new Color(255, 255, 255));
+				txtrNorthLane_1_1.setWrapStyleWord(true);
+				txtrNorthLane_1_1.setToolTipText("");
+				txtrNorthLane_1_1.setText("SOUTH");
+				txtrNorthLane_1_1.setLineWrap(true);
+				txtrNorthLane_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
+				txtrNorthLane_1_1.setEditable(false);
+				txtrNorthLane_1_1.setBackground(new Color(0, 0, 0));
+				txtrNorthLane_1_1.setBounds(20, 237, 21, 114);
+				panel_9.add(txtrNorthLane_1_1);
 				
 				JPanel panel_9_2 = new JPanel();
-				panel_9_2.setBackground(Color.GRAY);
-				panel_9_2.setBounds(198, 24, 51, 332);
+				panel_9_2.setBackground(new Color(0, 0, 0));
+				panel_9_2.setBounds(181, 0, 51, 351);
 				panel_8.add(panel_9_2);
+				panel_9_2.setLayout(null);
 				
-				JPanel panel_9_1_1 = new JPanel();
-				panel_9_1_1.setBackground(Color.GRAY);
-				panel_9_2.add(panel_9_1_1);
+				JTextArea txtrNorthLane_1 = new JTextArea();
+				txtrNorthLane_1.setForeground(new Color(255, 255, 255));
+				txtrNorthLane_1.setBounds(20, 0, 21, 114);
+				panel_9_2.add(txtrNorthLane_1);
+				txtrNorthLane_1.setBackground(new Color(0, 0, 0));
+				txtrNorthLane_1.setFont(new Font("Arial", Font.PLAIN, 18));
+				txtrNorthLane_1.setLineWrap(true);
+				txtrNorthLane_1.setWrapStyleWord(true);
+				txtrNorthLane_1.setToolTipText("");
+				txtrNorthLane_1.setEditable(false);
+				txtrNorthLane_1.setText("NORTH");
+				
+				JPanel panel_9_3 = new JPanel();
+				panel_9_3.setBackground(new Color(0, 0, 0));
+				panel_9_3.setBounds(-19, 107, 332, 51);
+				panel_8.add(panel_9_3);
+				panel_9_3.setLayout(null);
+				
+				JTextArea txtrNorthLane_1_1_1_1 = new JTextArea();
+				txtrNorthLane_1_1_1_1.setForeground(new Color(255, 255, 255));
+				txtrNorthLane_1_1_1_1.setWrapStyleWord(true);
+				txtrNorthLane_1_1_1_1.setToolTipText("");
+				txtrNorthLane_1_1_1_1.setText("WEST");
+				txtrNorthLane_1_1_1_1.setLineWrap(true);
+				txtrNorthLane_1_1_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
+				txtrNorthLane_1_1_1_1.setEditable(false);
+				txtrNorthLane_1_1_1_1.setBackground(new Color(0, 0, 0));
+				txtrNorthLane_1_1_1_1.setBounds(36, 11, 67, 29);
+				panel_9_3.add(txtrNorthLane_1_1_1_1);
+				
+				JPanel panel_9_3_1 = new JPanel();
+				panel_9_3_1.setBackground(new Color(0, 0, 0));
+				panel_9_3_1.setBounds(0, 188, 332, 51);
+				panel_8.add(panel_9_3_1);
+				panel_9_3_1.setLayout(null);
+				
+				JTextArea txtrNorthLane_1_1_1 = new JTextArea();
+				txtrNorthLane_1_1_1.setForeground(new Color(255, 255, 255));
+				txtrNorthLane_1_1_1.setWrapStyleWord(true);
+				txtrNorthLane_1_1_1.setToolTipText("");
+				txtrNorthLane_1_1_1.setText("EAST");
+				txtrNorthLane_1_1_1.setLineWrap(true);
+				txtrNorthLane_1_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
+				txtrNorthLane_1_1_1.setEditable(false);
+				txtrNorthLane_1_1_1.setBackground(new Color(0, 0, 0));
+				txtrNorthLane_1_1_1.setBounds(237, 11, 67, 29);
+				panel_9_3_1.add(txtrNorthLane_1_1_1);
 				
 				JPanel panel_10 = new JPanel();
 				panel_10.setBounds(141, 199, 477, 397);
@@ -215,7 +270,7 @@ public class TrafficControls {
 				txtrEastLane.setFont(new Font("Arial", Font.PLAIN, 24));
 				txtrEastLane.setEditable(false);
 				txtrEastLane.setBackground(SystemColor.menu);
-				txtrEastLane.setBounds(10, 131, 130, 30);
+				txtrEastLane.setBounds(10, 202, 130, 30);
 				panel_10.add(txtrEastLane);
 				
 				JTextArea txtrSouthLane = new JTextArea();
@@ -223,7 +278,7 @@ public class TrafficControls {
 				txtrSouthLane.setFont(new Font("Arial", Font.PLAIN, 24));
 				txtrSouthLane.setEditable(false);
 				txtrSouthLane.setBackground(SystemColor.menu);
-				txtrSouthLane.setBounds(10, 221, 130, 30);
+				txtrSouthLane.setBounds(10, 82, 130, 30);
 				panel_10.add(txtrSouthLane);
 				
 				JTextArea txtrWestLane = new JTextArea();
@@ -231,52 +286,89 @@ public class TrafficControls {
 				txtrWestLane.setFont(new Font("Arial", Font.PLAIN, 24));
 				txtrWestLane.setEditable(false);
 				txtrWestLane.setBackground(SystemColor.menu);
-				txtrWestLane.setBounds(10, 311, 130, 30);
+				txtrWestLane.setBounds(10, 243, 130, 30);
 				panel_10.add(txtrWestLane);
 				
+				// North and South Lanes
 				JSpinner northLaneRed = new JSpinner();
 				northLaneRed.setFont(new Font("Arial", Font.PLAIN, 16));
-				northLaneRed.setModel(new SpinnerNumberModel(5, 2, 20, 1));
-				northLaneRed.setBounds(263, 45, 44, 30);
+				northLaneRed.setModel(new SpinnerNumberModel(TrafficLight.NorthRedTimer, 2, 20, 1));
+				northLaneRed.setBounds(263, 60, 44, 30);
 				panel_10.add(northLaneRed);
 				
 				JSpinner northLaneGreen = new JSpinner();
-				northLaneGreen.setModel(new SpinnerNumberModel(5, 2, 20, 1));
+				northLaneGreen.setModel(new SpinnerNumberModel(TrafficLight.NorthGreenTimer, 2, 20, 1));
 				northLaneGreen.setFont(new Font("Arial", Font.PLAIN, 16));
-				northLaneGreen.setBounds(344, 45, 44, 30);
+				northLaneGreen.setBounds(344, 60, 44, 30);
 				panel_10.add(northLaneGreen);
 				
 				JSpinner northLaneYellow = new JSpinner();
-				northLaneYellow.setModel(new SpinnerNumberModel(5, 2, 5, 1));
+				northLaneYellow.setModel(new SpinnerNumberModel(TrafficLight.NorthYellowTimer, 2, 5, 1));
 				northLaneYellow.setFont(new Font("Arial", Font.PLAIN, 16));
-				northLaneYellow.setBounds(423, 45, 44, 30);
+				northLaneYellow.setBounds(423, 60, 44, 30);
 				panel_10.add(northLaneYellow);
 				
 				JPanel greenBox = new JPanel();
 				greenBox.setBackground(new Color(0, 255, 0));
-				greenBox.setBounds(315, 45, 29, 30);
+				greenBox.setBounds(315, 60, 29, 30);
 				panel_10.add(greenBox);
 				
 				JPanel redBox = new JPanel();
 				redBox.setBackground(new Color(255, 0, 0));
-				redBox.setBounds(235, 45, 29, 30);
+				redBox.setBounds(235, 60, 29, 30);
 				panel_10.add(redBox);
 				
 				JPanel yellowBox = new JPanel();
 				yellowBox.setBackground(new Color(255, 255, 0));
-				yellowBox.setBounds(396, 45, 29, 30);
+				yellowBox.setBounds(396, 60, 29, 30);
 				panel_10.add(yellowBox);
 				
+					
+				// East and West Lanes
+				JPanel redBox_1 = new JPanel();
+				redBox_1.setBackground(Color.RED);
+				redBox_1.setBounds(235, 223, 29, 30);
+				panel_10.add(redBox_1);
+				
+				JSpinner eastLaneRed = new JSpinner();
+				eastLaneRed.setModel(new SpinnerNumberModel(TrafficLight.EastRedTimer, 2, 20, 1));
+				eastLaneRed.setFont(new Font("Arial", Font.PLAIN, 16));
+				eastLaneRed.setBounds(263, 223, 44, 30);
+				panel_10.add(eastLaneRed);
+				
+				JPanel greenBox_1 = new JPanel();
+				greenBox_1.setBackground(Color.GREEN);
+				greenBox_1.setBounds(315, 223, 29, 30);
+				panel_10.add(greenBox_1);
+				
+				JSpinner eastLaneGreen = new JSpinner();
+				eastLaneGreen.setModel(new SpinnerNumberModel(TrafficLight.EastGreenTimer, 2, 20, 1));
+				eastLaneGreen.setFont(new Font("Arial", Font.PLAIN, 16));
+				eastLaneGreen.setBounds(344, 223, 44, 30);
+				panel_10.add(eastLaneGreen);
+				
+				JPanel yellowBox_1 = new JPanel();
+				yellowBox_1.setBackground(Color.YELLOW);
+				yellowBox_1.setBounds(396, 223, 29, 30);
+				panel_10.add(yellowBox_1);
+				
+				JSpinner eastLaneYellow = new JSpinner();
+				eastLaneYellow.setModel(new SpinnerNumberModel(TrafficLight.EastYellowTimer, 2, 5, 1));
+				eastLaneYellow.setFont(new Font("Arial", Font.PLAIN, 16));
+				eastLaneYellow.setBounds(423, 223, 44, 30);
+				panel_10.add(eastLaneYellow);
+				
+				// Submit Button
 				JToggleButton tglbtnNewToggleButton = new JToggleButton("Submit Changes");
 				tglbtnNewToggleButton.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						TrafficLight.setTrafficLights("North", (Integer) northLaneRed.getValue(), (Integer) northLaneGreen.getValue(), (Integer) northLaneYellow.getValue());
+						TrafficLight.setTrafficLights("East", (Integer) eastLaneRed.getValue(), (Integer) eastLaneGreen.getValue(), (Integer) eastLaneYellow.getValue());
 					}
 				});
 				tglbtnNewToggleButton.setFont(new Font("Arial", Font.PLAIN, 16));
 				tglbtnNewToggleButton.setBounds(315, 363, 150, 23);
-				panel_10.add(tglbtnNewToggleButton);		
+				panel_10.add(tglbtnNewToggleButton);	
 	}
-
 }

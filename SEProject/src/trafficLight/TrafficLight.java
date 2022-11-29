@@ -2,7 +2,12 @@ package trafficLight;
 
 public class TrafficLight extends Thread{
 	
-	public static int greenTimer = 5, redTimer = 5, yellowTimer = 5;
+	public static int NorthGreenTimer = 5, NorthRedTimer = 5, NorthYellowTimer = 2;
+	public static int EastGreenTimer = 5, EastRedTimer = 5, EastYellowTimer = 2;
+	static boolean singlePaint = false, singlePaint2 = false, singlePaint3 = false;
+	
+	static String EastState = "empty", NorthState = "empty"
+			, SouthState = "empty", WestState = "empty";
 	
 	public void run() {
 		try {
@@ -13,103 +18,214 @@ public class TrafficLight extends Thread{
 		}
 	}
 	
+	public static void setLaneState(String state, char lane) {
+		if(lane == 'N') 
+			NorthState = state;
+		else if(lane == 'E')
+			EastState = state;
+		else if(lane == 'S')
+			SouthState = state;
+		else if(lane == 'W')
+			WestState = state;
+	}
+	
 	public static void main() throws InterruptedException {
 		
 		TrafficLightDisplay f = new TrafficLightDisplay();
 	
 		while(true) {
 			
-			
-			if(f.laneEastColorGreen) {
-				eastGreenLightTimer();
+			//System.out.println(NorthState + EastState + SouthState + WestState);
+			if((NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle")) &&
+					!(EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle"))) {
+				
+				changeNorthToGreenLight(f);
+				
+				f.laneSouthColorGreen = true;
+				f.laneSouthColorRed = false;
+				f.laneSouthColorYellow = false;
+				
 				f.laneEastColorGreen = false;
-				f.laneEastColorYellow = true;
-				f.repaint();
-				eastYellowLightTimer();
-				f.laneEastColorYellow = false;
 				f.laneEastColorRed = true;
-				f.repaint();
-				eastRedLightTimer();
-				f.laneNorthColorGreen = true;
-				f.repaint();
+				f.laneEastColorYellow = false;
+				
+				f.laneWestColorGreen = false;
+				f.laneWestColorRed = true;
+				f.laneWestColorYellow = false;
+				
+				
+				
+				if(!singlePaint) {
+					f.repaint();
+					singlePaint = true;
+				}
+				Thread.sleep(1000);
 			}
-			else if(f.laneNorthColorGreen) {
-				northGreenLightTimer();
-				f.laneNorthColorGreen = false;
-				f.laneNorthColorYellow = true;
-				f.repaint();
-				northRedLightTimer();
-				f.laneNorthColorYellow = false;
-				f.laneNorthColorRed = true;
-				f.repaint();
-				northYellowLightTimer();
+			else if((EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle")) &&
+					!(NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle"))) {
+				
+				if(!singlePaint2)
+					changeNorthSouthToRedLight(f);
+				
 				f.laneEastColorGreen = true;
-				f.repaint();
+				f.laneEastColorRed = false;
+				f.laneEastColorYellow = false;
+				
+				f.laneWestColorGreen = true;
+				f.laneWestColorRed = false;
+				f.laneWestColorYellow = false;
+				
+				
+				
+				if(!singlePaint2) {
+					f.repaint();
+					singlePaint2 = true;
+				}
+				Thread.sleep(1000);
+			}
+			else if((EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle")) &&
+					(NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle"))) {
+				
+
+				changeNorthSouthToRedLight(f);
+				
+				changeEastWestToRedLight(f);
+				
+				if(!singlePaint3) {
+					f.repaint();
+					singlePaint3 = true;
+				}
+				Thread.sleep(1000);
+			}
+			else if(NorthState.equals("empty") && EastState.equals("empty") 
+					&& (SouthState.equals("empty") && WestState.equals("empty"))) {
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint3 = false;
+				
+				
+				if(f.laneEastColorGreen) {
+					eastGreenLightTimer();
+					// East Light
+					f.laneEastColorGreen = false;
+					f.laneEastColorYellow = true;
+					// West Light
+					f.laneWestColorGreen = false;
+					f.laneWestColorYellow = true;
+					f.repaint();
+					eastYellowLightTimer();
+					// East Light
+					f.laneEastColorYellow = false;
+					f.laneEastColorRed = true;
+					// West Light
+					f.laneWestColorYellow = false;
+					f.laneWestColorRed = true;
+					f.repaint();
+					eastRedLightTimer();
+					f.laneNorthColorGreen = true;
+					f.laneSouthColorGreen = true;
+					f.repaint();
+				}
+				
+				else if(f.laneNorthColorGreen) {
+					northGreenLightTimer();
+					// North Light
+					f.laneNorthColorGreen = false;
+					f.laneNorthColorYellow = true;
+					// South Light
+					f.laneSouthColorGreen = false;
+					f.laneSouthColorYellow = true;
+					f.repaint();
+					northRedLightTimer();
+					// North Light
+					f.laneNorthColorYellow = false;
+					f.laneNorthColorRed = true;
+					// South Light
+					f.laneSouthColorYellow = false;
+					f.laneSouthColorRed = true;
+					f.repaint();
+					northYellowLightTimer();
+					f.laneEastColorGreen = true;
+					f.laneWestColorGreen = true;
+					f.repaint();
+				}
 			}
 		}
 		
 		
 	}
 	
+	private static void changeNorthToGreenLight(TrafficLightDisplay lane) {
+		lane.laneNorthColorGreen = true;
+		lane.laneNorthColorRed = false;
+		lane.laneNorthColorYellow = false;
+	}
+	
+	private static void changeNorthSouthToRedLight(TrafficLightDisplay lane) throws InterruptedException {
+		
+			lane.laneNorthColorGreen = false;
+			lane.laneNorthColorRed = true;
+			lane.laneNorthColorYellow = false;
+			lane.laneSouthColorGreen = false;
+			lane.laneSouthColorRed = true;
+			lane.laneSouthColorYellow = false;
+	
+	}
+	
+	private static void changeEastWestToRedLight(TrafficLightDisplay lane) throws InterruptedException {
+		
+		lane.laneWestColorGreen = false;
+		lane.laneWestColorRed = true;
+		lane.laneWestColorYellow = false;
+		lane.laneEastColorGreen = false;
+		lane.laneEastColorRed = true;
+		lane.laneEastColorYellow = false;
+
+}
+	
 	private static void northGreenLightTimer() throws InterruptedException {
-		//System.out.println("North Green Light Timer: ");
-		for(int i = greenTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = NorthGreenTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//System.out.println();
 	}
 	
 	private static void northRedLightTimer() throws InterruptedException {
-		//System.out.println("North Red Light Timer: ");
-		for(int i = redTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = NorthRedTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//ystem.out.println();
 	}
 	
 	private static void northYellowLightTimer() throws InterruptedException {
-		//System.out.println("North Yellow Light Timer: ");
-		for(int i = yellowTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = NorthYellowTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//System.out.println();
 	}
 	
 	private static void eastGreenLightTimer() throws InterruptedException {
-		//System.out.println("East Green Light Timer: ");
-		for(int i = greenTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = EastGreenTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//System.out.println();
 	}
 	
 	private static void eastRedLightTimer() throws InterruptedException {
-		//System.out.println("East Red Light Timer: ");
-		for(int i = redTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = EastRedTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//System.out.println();
+		
 	}
 	
 	private static void eastYellowLightTimer() throws InterruptedException {
-		//System.out.println("East Yellow Light Timer: ");
-		for(int i = yellowTimer; i >= 0; i--) {
-			//System.out.print(i + " ");
+		for(int i = EastYellowTimer; i >= 1; i--)
 			Thread.sleep(1000);
-		}
-		//System.out.println();
 	}
 	
 	
 	public static void setTrafficLights(String lane, int red, int green, int yellow) {
-		TrafficLight.greenTimer = green;
-		TrafficLight.redTimer = red;
-		TrafficLight.yellowTimer = yellow;
+		if (lane.equals("North")) {
+			TrafficLight.NorthGreenTimer = green;
+			TrafficLight.NorthRedTimer = red;
+			TrafficLight.NorthYellowTimer = yellow;
+		}
+		if (lane.equals("East")) {
+			TrafficLight.EastGreenTimer = green;
+			TrafficLight.EastRedTimer = red;
+			TrafficLight.EastYellowTimer = yellow;
+		}
 	}
 
 }

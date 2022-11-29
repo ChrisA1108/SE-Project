@@ -10,6 +10,7 @@ import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JEditorPane;
 
 public class TrafficInformation {
 
@@ -120,6 +121,6 @@ public class TrafficInformation {
 		txtpnTrafficControls.setText("Traffic Controls");
 		
 		
-		}
-
+		
+	}
 }

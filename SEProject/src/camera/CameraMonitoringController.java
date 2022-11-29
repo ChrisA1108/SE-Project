@@ -2,6 +2,8 @@ package camera;
 
 import java.util.Scanner;
 
+import trafficLight.TrafficLight;
+
 public class CameraMonitoringController extends Thread {
 	
 	public void run() {
@@ -65,7 +67,7 @@ public class CameraMonitoringController extends Thread {
 
 	private static boolean validInput(String input) {
 		if(input.toLowerCase().matches("(schoolbus)|(traffic)|(empty)|(vehicle)"
-				+ "|(pedestrian)|(emergencyvechicle)|(accident)"))
+				+ "|(pedestrian)|(emergencyvehicle)|(accident)"))
 			return true;
 		else
 			return false;
@@ -73,6 +75,8 @@ public class CameraMonitoringController extends Thread {
 	
 	private static void parseSignal(String laneSignal, char lane) {
 		String state = laneSignal.toLowerCase();
+		
+		TrafficLight.setLaneState(laneSignal, lane);
 		
 		if (state.equals("empty"));
 		// function call for empty lane signal
@@ -84,8 +88,8 @@ public class CameraMonitoringController extends Thread {
 		// function call for pedestrian detected signal
 		if (state.equals("schoolbus"));
 		// function call for school bus detected
-		if (state.equals("emergencyvechicle"));
-		// function call for emergency vechicle detected
+		if (state.equals("emergencyvehicle"));
+		// function call for emergency vehicle detected
 		
 		if (state.equals("accident")) {
 			Hazard h = new Hazard(Character.toString(lane));

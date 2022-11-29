@@ -12,15 +12,15 @@ import gui.GUIRunner;
 public class TrafficControlController {
 
 	public static void main(String[] args) {
-		// Calls thread to begin executing
+		// Calls traffic light display in new thread
 		TrafficLight lightDisplay = new TrafficLight();
 		lightDisplay.start();
 		
-		//Function call to start camera monitoring controller
+		//Function call to start camera monitoring controller in new thread
 		CameraMonitoringController cameraInput = new CameraMonitoringController();
 		cameraInput.start();
 		
-		//Calls interface to open
+		//Calls user interface to open
 		GUIRunner.main();
 		
 	}
