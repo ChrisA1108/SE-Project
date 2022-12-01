@@ -1,13 +1,15 @@
 package storage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import camera.Hazard;
+import trafficInformation.TrafficTimes;
 
 public class Storage {
 	
 	public static ArrayList<String[]> reports = new ArrayList<>();
-	
+	public static List<TrafficTimes> times = new ArrayList<>();
 	
 	
 	
@@ -15,16 +17,19 @@ public class Storage {
 		reports.add(r.getReport());
 	}
 	
-	public static void main(String[] args) {
-		String[] report = {"time", "lane"};
-		reports.add(report);
-		
-		String[] temp = reports.get(0);
-		
-		System.out.print(temp[0]);
-		
-		
+	protected static void storeTrafficTime(String lane, String start, String end) {
+		TrafficTimes time = new TrafficTimes();
+		time.startTime = start;
+		time.endTime = end;
+		time.lane = lane;
+		times.add(time);
 	}
+	
+	public List<TrafficTimes> getTrafficTimes() {
+		return times;
+	}
+	
+	
 
 
 }

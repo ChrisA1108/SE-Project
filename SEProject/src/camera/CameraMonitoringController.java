@@ -1,11 +1,13 @@
 package camera;
 
 import java.util.Scanner;
-
+import java.util.Calendar;
 import storage.Storage;
 import trafficLight.TrafficLight;
 
 public class CameraMonitoringController extends Thread {
+	static boolean NorthTraffic = false, SouthTraffic = false, EastTraffic = false, WestTraffic = false;
+	static String NorthStart = "", SouthStart = "", EastStart = "", WestStart = "";
 	
 	public void run() {
 		main();
@@ -80,17 +82,15 @@ public class CameraMonitoringController extends Thread {
 		
 		
 		if (state.equals("empty"));
-		// function call for empty lane signal
 		if (state.equals("vehicle"));
 		// function call for vehicle detected signal
-		if (state.equals("traffic"));
-		// function call for traffic detected signal
 		if (state.equals("pedestrian"));
 		// function call for pedestrian detected signal
 		if (state.equals("schoolbus"));
 		// function call for school bus detected
 		if (state.equals("emergencyvehicle"));
 		// function call for emergency vehicle detected
+		
 		
 		if (state.equals("accident")) {
 			
@@ -117,10 +117,79 @@ public class CameraMonitoringController extends Thread {
 	        	h.report();
 	        	Storage.storeReport(h);
 			}
-			
-			
-        	
 		}
+		else if (state.equals("traffic")) {
+			String cause = "";
+			Calendar time = Calendar.getInstance();
+			
+			if(TrafficLight.NorthState.equals("accident") || TrafficLight.EastState.equals("accident") ||
+					TrafficLight.SouthState.equals("accident") || TrafficLight.WestState.equals("accident")) {
+				cause = "accident";
+			}
+			else {
+				cause = "unknown";
+			}
+			
+			if(lane == 'N' && !TrafficLight.NorthState.equals("traffic")) {
+				NorthStart = time.getTime().toString();
+				System.out.println("Traffic Detected!\n Lane: " + lane + "\n Cause: " + cause + "\n Time: " + NorthStart);
+				NorthTraffic = true;
+			}
+			
+			if(lane == 'E' && !TrafficLight.EastState.equals("traffic")) {
+				EastStart = time.getTime().toString();
+
+				System.out.println("Traffic Detected!\n Lane: " + lane + "\n Cause: " + cause + "\n Time: " + EastStart);
+				EastTraffic = true;
+
+			}
+			
+			if(lane == 'S' && !TrafficLight.SouthState.equals("traffic")) {
+				SouthStart = time.getTime().toString();
+
+				System.out.println("Traffic Detected!\n Lane: " + lane + "\n Cause: " + cause + "\n Time: " + SouthStart);
+				SouthTraffic = true;
+
+			}
+			
+			if(lane == 'W' && !TrafficLight.WestState.equals("traffic")) {
+				WestStart = time.getTime().toString();
+
+				System.out.println("Traffic Detected!\n Lane: " + lane + "\n Cause: " + cause + "\n Time: " + WestStart);
+				WestTraffic = true;
+
+			}
+		}
+		
+		else if(NorthTraffic && (lane == 'N' && state.equals("empty"))) {
+			Calendar time = Calendar.getInstance();
+			NorthTraffic = false;
+		
+			System.out.println("Traffic Resolved!\n Lane: " + lane + "\n Start Time: " + NorthStart + "\n End Time: " + time.getTime().toString());
+		}
+		
+		else if(EastTraffic && (lane == 'E' && state.equals("empty"))) {
+			Calendar time = Calendar.getInstance();
+			EastTraffic = false;
+
+			System.out.println("Traffic Resolved!\n Lane: " + lane + "\n Start Time: " + EastStart + "\n End Time: " + time.getTime().toString());
+
+			
+		}
+		else if(SouthTraffic && (lane == 'S' && state.equals("empty"))) {
+			Calendar time = Calendar.getInstance();
+			SouthTraffic = false;
+			System.out.println("Traffic Resolved!\n Lane: " + lane + "\n Start Time: " + SouthStart + "\n End Time: " + time.getTime().toString());
+
+		}
+		else if(WestTraffic && (lane == 'W' && state.equals("empty"))) {
+			Calendar time = Calendar.getInstance();
+			WestTraffic = false;
+
+			System.out.println("Traffic Resolved!\n Lane: " + lane + "\n Start Time: " + WestStart + "\n End Time: " + time.getTime().toString());
+
+		}
+		
 		
 		TrafficLight.setLaneState(laneSignal, lane);
 			

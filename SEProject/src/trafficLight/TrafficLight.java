@@ -118,7 +118,7 @@ public class TrafficLight extends Thread{
 				}
 				Thread.sleep(1000);
 			}
-			else if((EastState.equals("vehicle") || WestState.equals("vehicle")) &&
+			else if((EastState.equals("vehicle") || WestState.equals("vehicle") || EastState.equals("traffic") || WestState.equals("traffic")) &&
 					(NorthState.equals("empty") && SouthState.equals("empty"))) {
 				singlePaint = false;
 				singlePaint2 = false;
@@ -156,7 +156,7 @@ public class TrafficLight extends Thread{
 				
 			}
 			/// fix
-			else if((NorthState.equals("vehicle") || SouthState.equals("vehicle")) &&
+			else if((NorthState.equals("vehicle") || SouthState.equals("vehicle") || NorthState.equals("traffic") || SouthState.equals("traffic")) &&
 					(EastState.equals("empty") && WestState.equals("empty"))) {
 				singlePaint = false;
 				singlePaint2 = false;
@@ -217,6 +217,8 @@ public class TrafficLight extends Thread{
 					f.repaint();
 				}
 				
+				Thread.sleep(2000);
+				
 				f.laneNorthColorGreen = true;
 				f.laneSouthColorGreen = true;
 				f.laneNorthColorRed = false;
@@ -231,9 +233,9 @@ public class TrafficLight extends Thread{
 				
 			}
 			
-			else if((NorthState.equals("schoolbus") || SouthState.equals("schoolbus")) &&
-					((EastState.equals("vehicle") || EastState.equals("traffic") || EastState.equals("empty")) && 
-							(WestState.equals("vehicle") || WestState.equals("traffic") || WestState.equals("empty"))) ) {
+			else if((EastState.equals("schoolbus") || WestState.equals("schoolbus")) &&
+					((NorthState.equals("vehicle") || NorthState.equals("traffic") || NorthState.equals("empty")) && 
+							(SouthState.equals("vehicle") || SouthState.equals("traffic") || SouthState.equals("empty"))) ) {
 				singlePaint = false;
 				singlePaint2 = false;
 				singlePaint3 = false;
@@ -254,6 +256,8 @@ public class TrafficLight extends Thread{
 					f.laneSouthColorYellow = false;
 					f.repaint();
 				}
+				
+				Thread.sleep(2000);
 				
 				f.laneEastColorGreen = true;
 				f.laneWestColorGreen = true;
