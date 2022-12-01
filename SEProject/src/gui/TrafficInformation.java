@@ -7,12 +7,20 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
+
+import storage.Storage;
+
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JEditorPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TrafficInformation {
+	
+	
 
 	private JFrame frmRightofwayTraffic;
 
@@ -120,7 +128,113 @@ public class TrafficInformation {
 		txtpnTrafficControls.setEditable(false);
 		txtpnTrafficControls.setText("Traffic Controls");
 		
+		JTextPane txtpnTest = new JTextPane();
+		txtpnTest.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtpnTest.setText("Report # \t Hazard Type \t Lane \t\t Time \t\t Date");
+		txtpnTest.setBounds(176, 221, 700, 43);
+		panel_1.add(txtpnTest);
+		
+		updateReports(panel_1);
 		
 		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(135, 180, 789, 424);
+		panel_1.add(panel_3);
+		panel_3.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Refresh");
+		btnNewButton.setBounds(596, 8, 146, 31);
+		panel_3.add(btnNewButton);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(!Storage.reports.isEmpty())
+					updateReports(panel_1);
+			}
+		});
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBackground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 16));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBounds(0, 180, 137, 84);
+		panel_1.add(panel_4);
+		panel_4.setLayout(null);
+		
+		JTextPane txtpnHazardReports = new JTextPane();
+		txtpnHazardReports.setBackground(new Color(240, 240, 240));
+		txtpnHazardReports.setBounds(33, 23, 70, 28);
+		panel_4.add(txtpnHazardReports);
+		txtpnHazardReports.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtpnHazardReports.setEditable(false);
+		txtpnHazardReports.setText("Reports");
+		
+			
+		
+	}
+	
+	public void updateReports(JPanel panel_1) {
+		int reportSize = Storage.reports.size();
+		String tab = "\t\t";
+		
+		if (reportSize >= 1) {
+			String[] tempLane = Storage.reports.get(0);
+			
+			JTextPane txtpnTest = new JTextPane();
+			txtpnTest.setFont(new Font("Arial", Font.PLAIN, 18));
+			txtpnTest.setText("     1 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+			txtpnTest.setBounds(176, 270, 700, 43);
+			panel_1.add(txtpnTest);
+			
+			if(reportSize >= 2) {
+				tempLane = Storage.reports.get(1);
+				
+				JTextPane txtpnTest_2 = new JTextPane();
+				txtpnTest_2.setFont(new Font("Arial", Font.PLAIN, 18));
+				txtpnTest_2.setText("     2 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+				txtpnTest_2.setBounds(176, 319, 700, 43);
+				panel_1.add(txtpnTest_2);
+				}
+				 if(reportSize >= 3) {
+					 tempLane = Storage.reports.get(2);
+					 
+					JTextPane txtpnTest_2_1 = new JTextPane();
+					txtpnTest_2_1.setFont(new Font("Arial", Font.PLAIN, 18));
+					txtpnTest_2_1.setText("     3 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+					txtpnTest_2_1.setBounds(176, 368, 700, 43);
+					panel_1.add(txtpnTest_2_1);
+				 }
+				 if(reportSize >= 4) {
+					tempLane = Storage.reports.get(3);
+					 
+					JTextPane txtpnTest_4 = new JTextPane();
+					txtpnTest_4.setFont(new Font("Arial", Font.PLAIN, 18));
+					txtpnTest_4.setText("     4 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+					txtpnTest_4.setBounds(176, 417, 700, 43);
+					panel_1.add(txtpnTest_4);
+				 }
+				 if(reportSize >= 5) {
+						tempLane = Storage.reports.get(4);
+						 
+						JTextPane txtpnTest_5 = new JTextPane();
+						txtpnTest_5.setFont(new Font("Arial", Font.PLAIN, 18));
+						txtpnTest_5.setText("     5 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+						txtpnTest_5.setBounds(176, 466, 700, 43);
+						panel_1.add(txtpnTest_5);
+					 }
+				 if(reportSize >= 6) {
+						tempLane = Storage.reports.get(5);
+						 
+						JTextPane txtpnTest_6 = new JTextPane();
+						txtpnTest_6.setFont(new Font("Arial", Font.PLAIN, 18));
+						txtpnTest_6.setText("     6 \t\t" + tempLane[2] + "\t  " + tempLane[1] + tab + tempLane[0] + tab + tempLane[3]);
+						txtpnTest_6.setBounds(176, 515, 700, 43);
+						panel_1.add(txtpnTest_6);
+					 }
+		}
 	}
 }

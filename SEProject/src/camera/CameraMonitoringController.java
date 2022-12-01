@@ -2,6 +2,7 @@ package camera;
 
 import java.util.Scanner;
 
+import storage.Storage;
 import trafficLight.TrafficLight;
 
 public class CameraMonitoringController extends Thread {
@@ -76,7 +77,7 @@ public class CameraMonitoringController extends Thread {
 	private static void parseSignal(String laneSignal, char lane) {
 		String state = laneSignal.toLowerCase();
 		
-		TrafficLight.setLaneState(laneSignal, lane);
+		
 		
 		if (state.equals("empty"));
 		// function call for empty lane signal
@@ -92,9 +93,36 @@ public class CameraMonitoringController extends Thread {
 		// function call for emergency vehicle detected
 		
 		if (state.equals("accident")) {
-			Hazard h = new Hazard(Character.toString(lane));
-        	h.report();
+			
+			if(lane == 'N' && !TrafficLight.NorthState.equals("accident")) {
+				Hazard h = new Hazard(Character.toString(lane));
+	        	h.report();
+	        	Storage.storeReport(h);
+			}
+			
+			if(lane == 'E' && !TrafficLight.EastState.equals("accident")) {
+				Hazard h = new Hazard(Character.toString(lane));
+	        	h.report();
+	        	Storage.storeReport(h);
+			}
+			
+			if(lane == 'S' && !TrafficLight.SouthState.equals("accident")) {
+				Hazard h = new Hazard(Character.toString(lane));
+	        	h.report();
+	        	Storage.storeReport(h);
+			}
+			
+			if(lane == 'W' && !TrafficLight.WestState.equals("accident")) {
+				Hazard h = new Hazard(Character.toString(lane));
+	        	h.report();
+	        	Storage.storeReport(h);
+			}
+			
+			
+        	
 		}
+		
+		TrafficLight.setLaneState(laneSignal, lane);
 			
 	}
 

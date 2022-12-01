@@ -4,10 +4,11 @@ public class TrafficLight extends Thread{
 	
 	public static int NorthGreenTimer = 5, NorthRedTimer = 5, NorthYellowTimer = 2;
 	public static int EastGreenTimer = 5, EastRedTimer = 5, EastYellowTimer = 2;
-	static boolean singlePaint = false, singlePaint2 = false, singlePaint3 = false;
+	static boolean singlePaint = false, singlePaint2 = false, singlePaint3 = false, singlePaint4 = false, singlePaint5 = false,
+			 singlePaint6 = false, singlePaint7 = false;
 	
-	static String EastState = "empty", NorthState = "empty"
-			, SouthState = "empty", WestState = "empty";
+	public static String EastState = "", NorthState = ""
+			, SouthState = "", WestState = "";
 	
 	public void run() {
 		try {
@@ -39,6 +40,13 @@ public class TrafficLight extends Thread{
 			if((NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle")) &&
 					!(EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle"))) {
 				
+				singlePaint2 = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
+				
 				changeNorthToGreenLight(f);
 				
 				f.laneSouthColorGreen = true;
@@ -64,6 +72,13 @@ public class TrafficLight extends Thread{
 			else if((EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle")) &&
 					!(NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle"))) {
 				
+				singlePaint = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
+				
 				if(!singlePaint2)
 					changeNorthSouthToRedLight(f);
 				
@@ -86,6 +101,12 @@ public class TrafficLight extends Thread{
 			else if((EastState.equals("emergencyvehicle") || WestState.equals("emergencyvehicle")) &&
 					(NorthState.equals("emergencyvehicle") || SouthState.equals("emergencyvehicle"))) {
 				
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint4 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
 
 				changeNorthSouthToRedLight(f);
 				
@@ -97,11 +118,165 @@ public class TrafficLight extends Thread{
 				}
 				Thread.sleep(1000);
 			}
-			else if(NorthState.equals("empty") && EastState.equals("empty") 
-					&& (SouthState.equals("empty") && WestState.equals("empty"))) {
+			else if((EastState.equals("vehicle") || WestState.equals("vehicle")) &&
+					(NorthState.equals("empty") && SouthState.equals("empty"))) {
 				singlePaint = false;
 				singlePaint2 = false;
 				singlePaint3 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
+				
+				if(f.laneNorthColorGreen) {
+					f.laneNorthColorGreen = false;
+					f.laneSouthColorGreen = false;
+					f.laneNorthColorYellow = true;
+					f.laneSouthColorYellow = true;
+					f.repaint();
+					northYellowLightTimer();
+					f.laneNorthColorRed = true;
+					f.laneSouthColorRed = true;
+					f.laneNorthColorYellow = false;
+					f.laneSouthColorYellow = false;
+					f.repaint();
+				}
+				
+				f.laneEastColorGreen = true;
+				f.laneWestColorGreen = true;
+				f.laneEastColorRed = false;
+				f.laneWestColorRed = false;
+				
+				if(!singlePaint4) {
+					f.repaint();
+					singlePaint4 = true;
+				}
+				
+				Thread.sleep(1000);
+				
+				
+			}
+			/// fix
+			else if((NorthState.equals("vehicle") || SouthState.equals("vehicle")) &&
+					(EastState.equals("empty") && WestState.equals("empty"))) {
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
+				
+				if(f.laneEastColorGreen) {
+					f.laneEastColorGreen = false;
+					f.laneWestColorGreen = false;
+					f.laneEastColorGreen = true;
+					f.laneWestColorGreen = true;
+					f.repaint();
+					northYellowLightTimer();
+					f.laneEastColorGreen = true;
+					f.laneWestColorGreen = true;
+					f.laneEastColorGreen = false;
+					f.laneWestColorGreen = false;
+					f.repaint();
+				}
+				
+				f.laneNorthColorGreen = true;
+				f.laneSouthColorGreen = true;
+				f.laneNorthColorRed = false;
+				f.laneSouthColorRed = false;
+				
+				if(!singlePaint5) {
+					f.repaint();
+					singlePaint5 = true;
+				}
+				
+				Thread.sleep(1000);
+				
+				
+			}
+			
+			else if((NorthState.equals("schoolbus") || SouthState.equals("schoolbus")) &&
+					((EastState.equals("vehicle") || EastState.equals("traffic") || EastState.equals("empty")) && 
+							(WestState.equals("vehicle") || WestState.equals("traffic") || WestState.equals("empty"))) ) {
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint7 = false;
+				
+				if(f.laneEastColorGreen) {
+					f.laneEastColorGreen = false;
+					f.laneEastColorYellow = true;
+					f.laneWestColorGreen = false;
+					f.laneWestColorYellow = true;
+					f.repaint();
+					eastYellowLightTimer();
+					f.laneEastColorYellow = false;
+					f.laneEastColorRed = true;
+					f.laneWestColorYellow = false;
+					f.laneWestColorRed = true;
+					f.repaint();
+				}
+				
+				f.laneNorthColorGreen = true;
+				f.laneSouthColorGreen = true;
+				f.laneNorthColorRed = false;
+				f.laneSouthColorRed = false;
+				
+				if(!singlePaint6) {
+					f.repaint();
+					singlePaint6 = true;
+				}
+				
+				Thread.sleep(1000);
+				
+			}
+			
+			else if((NorthState.equals("schoolbus") || SouthState.equals("schoolbus")) &&
+					((EastState.equals("vehicle") || EastState.equals("traffic") || EastState.equals("empty")) && 
+							(WestState.equals("vehicle") || WestState.equals("traffic") || WestState.equals("empty"))) ) {
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				
+				if(f.laneNorthColorGreen) {
+					f.laneNorthColorGreen = false;
+					f.laneSouthColorGreen = false;
+					f.laneNorthColorYellow = true;
+					f.laneSouthColorYellow = true;
+					f.repaint();
+					northYellowLightTimer();
+					f.laneNorthColorRed = true;
+					f.laneSouthColorRed = true;
+					f.laneNorthColorYellow = false;
+					f.laneSouthColorYellow = false;
+					f.repaint();
+				}
+				
+				f.laneEastColorGreen = true;
+				f.laneWestColorGreen = true;
+				f.laneEastColorRed = false;
+				f.laneWestColorRed = false;
+				
+				if(!singlePaint7) {
+					f.repaint();
+					singlePaint7 = true;
+				}
+				
+				Thread.sleep(1000);
+				
+			}
+				
+			else {
+				singlePaint = false;
+				singlePaint2 = false;
+				singlePaint3 = false;
+				singlePaint4 = false;
+				singlePaint5 = false;
+				singlePaint6 = false;
+				singlePaint7 = false;
 				
 				
 				if(f.laneEastColorGreen) {
@@ -136,7 +311,7 @@ public class TrafficLight extends Thread{
 					f.laneSouthColorGreen = false;
 					f.laneSouthColorYellow = true;
 					f.repaint();
-					northRedLightTimer();
+					northYellowLightTimer();
 					// North Light
 					f.laneNorthColorYellow = false;
 					f.laneNorthColorRed = true;
@@ -144,15 +319,13 @@ public class TrafficLight extends Thread{
 					f.laneSouthColorYellow = false;
 					f.laneSouthColorRed = true;
 					f.repaint();
-					northYellowLightTimer();
+					northRedLightTimer();
 					f.laneEastColorGreen = true;
 					f.laneWestColorGreen = true;
 					f.repaint();
 				}
 			}
 		}
-		
-		
 	}
 	
 	private static void changeNorthToGreenLight(TrafficLightDisplay lane) {
